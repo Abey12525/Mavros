@@ -6,7 +6,7 @@ import { Star } from './components/stars';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{background: "linear-gradient(to-left, #1a234d, #0b0e1f)"}}>
         <Canvas>
           <Suspense fallback={null}>
             <Star/>
