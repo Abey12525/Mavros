@@ -32,20 +32,32 @@ const CameraController = () => {
 
 export function Star(props) {
 
-    const [colorMap, normalMap, specularMap, coludsMap] = useLoader(
+    const [nightMap, colorMap, normalMap, specularMap, coludsMap] = useLoader(
         TextureLoader,
-        [EarthDayMap, EarthNormalMap, EarthSpecularMap, EarthCloudsMap]
+        [EarthNightMap, EarthDayMap, EarthNormalMap, EarthSpecularMap, EarthCloudsMap]
     );
 
     
 
-    const meshRef = useRef();
+    const meshRefR = useRef();
+    const meshRefL = useRef();
     const cloudRef = useRef();
 
+
     useFrame((state, delta) => {
-        if (meshRef.current){
+        if (meshRefR.current){
             // meshRef.current.rotation.x += delta/2;
-            meshRef.current.rotation.y += delta/4;
+            meshRefR.current.rotation.y += delta/4;
+            // meshRef.current.position.x += 0.01;
+            // meshRef.current.position.y += 0.01;
+            
+        }
+    })
+
+    useFrame((state, delta) => {
+        if (meshRefL.current){
+            // meshRef.current.rotation.x += delta/2;
+            meshRefL.current.rotation.y += delta/4;
             // meshRef.current.position.x += 0.01;
             // meshRef.current.position.y += 0.01;
             
@@ -72,11 +84,19 @@ export function Star(props) {
                                 transparent={true}
                                 side={DoubleSide}/>
         </mesh>
-        <mesh ref={meshRef}>
+
+        {/* <mesh ref={meshRefR}>
             <CameraController/>
             <sphereGeometry args={[1.1, 50, 50]} />
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial map={colorMap} normalMap={normalMap} />
+        </mesh> */}
+
+        <mesh ref={meshRefL}>
+            <CameraController/>
+            <sphereGeometry args={[1.1, 50, 50]} phiLength={Math.Pi/2} />
+            <meshPhongMaterial specularMap={specularMap}/>
+            <meshStandardMaterial map={nightMap} normalMap={normalMap} />
         </mesh>
     </>
 
