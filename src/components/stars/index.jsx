@@ -92,12 +92,12 @@ export function Star(props) {
                                 side={DoubleSide}/>
         </mesh> */}
 
-        {/* <mesh ref={meshRefR} position={[0,0,0]}>
+        <mesh ref={meshRefR} position={[0,0,0]}>
             <CameraController/>
             <sphereGeometry args={[1.1, 50, 50, 0, Math.PI]} />
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial map={colorMap} normalMap={normalMap} />
-        </mesh> */}
+        </mesh>
         <primitive object={new AxesHelper(10)} />
         <mesh ref={meshRefL}>
             <CameraController/>
