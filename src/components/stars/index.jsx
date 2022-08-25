@@ -2,7 +2,7 @@ import React, { useEffect, useRef} from 'react';
 import { useLoader, useThree, useFrame } from 'react-three-fiber';
 // import { OrbitControls } from '@react-three/drei';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { TextureLoader, DoubleSide } from 'three';
+import { TextureLoader, DoubleSide, AxesHelper} from 'three';
 // import * as THREE from 'three';
 
 import EarthNightMap from '../../assets/textures/8k_earth_nightmap.jpg';
@@ -98,7 +98,7 @@ export function Star(props) {
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial map={colorMap} normalMap={normalMap} />
         </mesh> */}
-
+        <primitive object={new AxesHelper(10)} />
         <mesh ref={meshRefL}>
             <CameraController/>
             <sphereGeometry args={[1.1, 50, 50, 0, Math.PI, Math.PI]} />
