@@ -44,57 +44,65 @@ export function Star(props) {
     const cloudRef = useRef();
 
 
-    useFrame((state, delta) => {
-        if (meshRefR.current){
-            // meshRef.current.rotation.x += delta/2;
-            meshRefR.current.rotation.y += delta/4;
-            // meshRef.current.position.x += 0.01;
-            // meshRef.current.position.y += 0.01;
+    // useFrame((state, delta) => {
+    //     if (meshRefR.current){
+    //         // meshRef.current.rotation.x += delta/2;
+    //         meshRefR.current.rotation.y += delta/4;
+    //         // meshRef.current.position.x += 0.01;
+    //         // meshRef.current.position.y += 0.01;
             
-        }
-    })
+    //     }
+        
+    // })
 
-    useFrame((state, delta) => {
-        if (meshRefL.current){
-            // meshRef.current.rotation.x += delta/2;
-            meshRefL.current.rotation.y += delta/4;
-            // meshRef.current.position.x += 0.01;
-            // meshRef.current.position.y += 0.01;
+    // useFrame((state, delta) => {
+    //     if (meshRefL.current){
+    //         // meshRef.current.rotation.x += delta/2;
+    //         meshRefL.current.rotation.y += delta/4;
+    //         // meshRef.current.position.x += 0.01;
+    //         // meshRef.current.position.y += 0.01;
             
-        }
-    })
+    //     }
+    // })
+    
+    // useFrame((state, delta) => {
+        //     if (cloudRef.current){
+            //         // cloudRef.current.rotation.x += delta/2;
+    //         cloudRef.current.rotation.y += delta/4;
+    //         // cloudRef.current.position.x += 0.01;
+    //         // cloudRef.current.position.y += 0.01;
+    
+    //     }
+    // })
     
     useFrame((state, delta) => {
-        if (cloudRef.current){
-            // cloudRef.current.rotation.x += delta/2;
-            cloudRef.current.rotation.y += delta/4;
-            // cloudRef.current.position.x += 0.01;
-            // cloudRef.current.position.y += 0.01;
-            
-        }
+        // meshRefR.current.rotation.y = meshRefL.current.rotation.y += delta/4;
+        // meshRefR.current.rotation.y += delta/4;
+        // meshRefL.current.rotation.y += delta/4;
     })
 
     return <>
         <ambientLight intensity={1} />
-        <mesh ref={cloudRef}>
+        {/* <mesh ref={cloudRef}>
             <sphereGeometry args={[1.102, 50, 50]} />
             <meshPhongMaterial map={coludsMap} 
                                 opacity={0.5} 
                                 depthWrite={true} 
                                 transparent={true}
                                 side={DoubleSide}/>
-        </mesh>
+        </mesh> */}
 
-        {/* <mesh ref={meshRefR}>
+        {/* <mesh ref={meshRefR} position={[0,0,0]}>
             <CameraController/>
-            <sphereGeometry args={[1.1, 50, 50]} />
+            <sphereGeometry args={[1.1, 50, 50, 0, Math.PI]} />
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial map={colorMap} normalMap={normalMap} />
         </mesh> */}
 
         <mesh ref={meshRefL}>
             <CameraController/>
-            <sphereGeometry args={[1.1, 50, 50]} phiLength={Math.Pi/2} />
+            <sphereGeometry args={[1.1, 50, 50, 0, Math.PI, Math.PI]} />
+            {/* <meshStandardMaterial/> */}
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial map={nightMap} normalMap={normalMap} />
         </mesh>
