@@ -14,8 +14,8 @@ import EarthCloudsMap from '../../assets/textures/8k_earth_clouds.jpg';
 export function Earth(props) {
 
     // const resf = useRef();
-    const [plane] = useState(() => new Plane(new Vector3(1, -0.1, 0), 0))
-    const [plane2] = useState(() => new Plane(new Vector3(-1, 0.1, 0), 0))
+    const [plane] = useState(() => new Plane(new Vector3(1, 0, 0), 0))
+    const [plane2] = useState(() => new Plane(new Vector3(-1, 0, 0), 0))
     const [nightMap, colorMap, normalMap, specularMap, coludsMap] = useLoader(
         TextureLoader,
         [EarthNightMap, EarthDayMap, EarthNormalMap, EarthSpecularMap, EarthCloudsMap]
@@ -28,14 +28,14 @@ export function Earth(props) {
     // https://codesandbox.io/s/yomotsu-camera-controller-test-b1ome?from-embed=&file=/src/ClipBox.js
     
     useFrame((state, delta) => {
-        // meshRefR.current.rotation.y = meshRefL.current.rotation.y = cloudRef.current.rotation.y += delta/4;
-        meshRefR.current.rotation.y = cloudRef.current.rotation.y += delta/4;
+        meshRefR.current.rotation.y = meshRefL.current.rotation.y = cloudRef.current.rotation.y += delta/4;
+        // meshRefR.current.rotation.y = cloudRef.current.rotation.y += delta/4;
     })
 
     return <>
-        <pointLight position={[10,0,10]} intensity={1} />
+        {/* <pointLight position={[10,0,5]} intensity={1} /> */}
         {/* <pointLight position={[-10,0,-10]} intensity={1} /> */}
-        {/* <ambientLight intensity={1} /> */}
+        <ambientLight intensity={1} />
         <mesh ref={cloudRef}>
             <sphereGeometry args={[1.102, 30, 30]} />
             <meshPhongMaterial map={coludsMap} 
@@ -45,23 +45,23 @@ export function Earth(props) {
                                 side={DoubleSide}/>
         </mesh>
 
-        {/* <mesh ref={meshRefR}>
+        <mesh ref={meshRefR}>
             <sphereGeometry args={[1.1, 30, 30]} />
             <meshPhongMaterial clippingPlanes={[plane]} specularMap={specularMap} />
             <meshStandardMaterial map={colorMap} normalMap={normalMap}  clippingPlanes={[plane]}/>
-        </mesh> */}
+        </mesh>
 
-        <mesh ref={meshRefR}>
+        {/* <mesh ref={meshRefR}>
             <sphereGeometry args={[1.1, 30, 30]} />
             <meshPhongMaterial specularMap={specularMap} />
             <meshStandardMaterial map={colorMap} normalMap={normalMap} />
-        </mesh>
+        </mesh> */}
 
-        {/* <mesh ref={meshRefL}>
+        <mesh ref={meshRefL}>
             <sphereGeometry args={[1.1, 30, 30]} />
             <meshPhongMaterial clippingPlanes={[plane2]} specularMap={specularMap}/>
             <meshStandardMaterial clippingPlanes={[plane2]} map={nightMap} normalMap={normalMap} />
-        </mesh> */}
+        </mesh>
 
         {/* <planeHelper args={[plane, 5, "white"]} /> */}
         {/* <primitive object={new AxesHelper(10)} /> */}

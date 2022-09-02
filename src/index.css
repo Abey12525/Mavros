@@ -6,7 +6,8 @@ body,
   margin: 0;
   overflow: hidden;
   /* border-color: #000000; */
-  background-color: #030113;
+  /* background-color: #030113; */
+  background: linear-gradient(to left, #030113 50%, #ead9e7 50%);
 }
 
 /* #root{
