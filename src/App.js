@@ -3,6 +3,7 @@ import { Canvas, useThree } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import './App.css';
 import { Earth } from './components/Earth';
+import { Stars } from './components/Stars';
 
 
 const CameraController = () => {
@@ -29,6 +30,7 @@ function App() {
       }}>
           <CameraController />
           <Suspense fallback={null}>
+            <Stars/>
             <Earth/>
           </Suspense>
         </Canvas>
