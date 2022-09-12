@@ -6,6 +6,8 @@ function StarsCreate(props) {
     // let starCount = 1000;
     const ref = useRef();
     // console.log(props.starCount);
+    // console.log(props.xMin);
+    // console.log(props.xMax);
 
     useLayoutEffect(()=> {
         const transform = new Matrix4();
@@ -26,18 +28,33 @@ function StarsCreate(props) {
         <instancedMesh ref={ref} args={[null, null, props.starCount]}>
             {/* <PointsMaterial color={0xaaaaaa} size={0.7}/> */}
             {/* <circleBufferGeometry args={[0.3,20]} />   */}
-            <sphereGeometry args={[0.3, 10, 10]} />
+            <sphereGeometry args={[0.3, 8, 8]} />
             <meshBasicMaterial color={props.sphereColor}/>
         </instancedMesh>
     )
 }
 
 export function Stars() {
+
+    // const[dimensions, setDimensions] = React.useState({
+    //     height:window.innerHeight,
+    //     width:window.innerWidth
+    // })
+    // React.useEffect(() => {
+    //     function handelResize() {
+    //         setDimensions({
+    //             height:window.innerHeight,
+    //             width:window.innerWidth
+    //         })
+    //     }
+    //     window.addEventListener('resize',handelResize)
+    // })
+
     return <>
         {/* Right stars */}
-        <StarsCreate  starCount={1000} sphereColor={0xd8d7d8} xMin={20} xMax={200} yMin={-200} yMax={200} zMin={-400} zMax={400} />
+        <StarsCreate  starCount={1000} sphereColor={0xd8d7d8} xMin={-300} xMax={300} yMin={-200} yMax={200} zMin={-400} zMax={400} />
 
         {/* Left stars */}
-        <StarsCreate  starCount={1000} sphereColor={0x030113} xMin={-200} xMax={-20} yMin={-200} yMax={200} zMin={-400} zMax={400} />
+        <StarsCreate  starCount={1000} sphereColor={0x030113} xMin={-300} xMax={300} yMin={-200} yMax={200} zMin={-400} zMax={400} />
     </>
 }
